@@ -30,28 +30,37 @@ available via Homebrew), then go into [scripts/addpdf](scripts/addpdf)
 and run
 
 ```
-./addpdf "$LINK_TO_PDF" "$TITLE"
+./addpdf.s <link to pdf> <title>
 ```
 
-Again, this will add the paper to the MongoDB database specified by
-the `MONGODB_URI` environment variable.
+Again, this will add the paper to the database specified by the
+`MONGODB_URI` environment variable.
 
 ## multri's approach to dealing with callback hell
 
 I use [asyncawait](https://www.npmjs.com/package/asyncawait). async
 and await are implemented as functions, but since Livescript lets you
 omit parentheses in function calls, they look enough like operators.
-I found `async` and `await` to be annoyingly verbose, though, so I
+I found `async` and `await` annoyingly verbose, though, so I
 aliased them as `$` and `_` in [common.ls](common.ls), which I load
 with:
 
-```
+```livescript
 global <<< require './common'
 ```
 
+Example:
+
+```
+app.get '/someroute', $ (i, o) ->
+  doc = _ Model.find({})
+  o.json({doc})
+
+```
+
 I think it's ugly too, but until JavaScript supplies a better solution
-than to have to write a five-letter keyword every time I want to do
-the obvious thing, I'm holding on to my apology.
+than to write a five-letter keyword just to do the obvious thing, I'm
+holding on to my apology.
 
 Since asyncawait only works on Node, the frontend just uses ordinary
 Promises.
