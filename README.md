@@ -5,9 +5,9 @@ multri is a web app for annotating PDFs a la
 https://multri.herokuapp.com.
 
 I designed this with deep learning papers in mind. Deep learning is
-becoming very popular but many papers are still difficult to read for
-layprogrammers. There's no documentation you can read like you can for
-React. I hoped this would make things easier.
+becoming very popular but many papers are still difficult for
+layprogrammers to read. There's no documentation like there is for
+React.  I hoped this would make things easier.
 
 The backend uses [Livescript](http://livescript.net/). The frontend
 uses [CoffeeScript with JSX](https://github.com/jsdf/coffee-react)
