@@ -16,16 +16,18 @@ with React/Redux, and is compiled by Webpack into one big file.
 ## Usage
 
 I'll push it to npm at some point; for now just clone the repo. multri
-uses MongoDB, so make sure you have the `MONGODB_URI` environment
-variable set, then run
+uses MongoDB, so set the `MONGODB_URI` environment variable, then run
 
 ```
 npm install
 npm start
 ```
 
-To add a paper, install pdf2htmlEX and Ghostscript, then 
-go into the [scripts/addpdf](scripts/addpdf) folder and run
+To add a paper, install
+[pdf2htmlEX](https://github.com/coolwanglu/pdf2htmlEX) and
+[Ghostscript](http://www.ghostscript.com/) (on OS X, these are
+available via Homebrew), then go into [scripts/addpdf](scripts/addpdf)
+and run
 
 ```
 ./addpdf "$LINK_TO_PDF" "$TITLE"
@@ -36,22 +38,22 @@ the `MONGODB_URI` environment variable.
 
 ## multri's approach to dealing with callback hell
 
-I use [https://www.npmjs.com/package/asyncawait](asyncawait). async
+I use [asyncawait](https://www.npmjs.com/package/asyncawait). async
 and await are implemented as functions, but since Livescript lets you
 omit parentheses in function calls, they look enough like operators.
-
-I found `async` and `await` to be annoyingly verbose, so I aliased them as `$`
-and `_` in [common.ls](common.ls). I load this file with:
+I found `async` and `await` to be annoyingly verbose, though, so I
+aliased them as `$` and `_` in [common.ls](common.ls), which I load
+with:
 
 ```
 global <<< require './common'
 ```
 
-I know this is a bit ugly, but until JavaScript supplies a better
-solution than to have to write a five-letter keyword every time I want
-to do the obvious thing, I'm holding on to my apology.
+I think it's ugly too, but until JavaScript supplies a better solution
+than to have to write a five-letter keyword every time I want to do
+the obvious thing, I'm holding on to my apology.
 
-Since `asyncawait` only works on Node, the frontend just uses ordinary
+Since asyncawait only works on Node, the frontend just uses ordinary
 Promises.
 
 ## What does the name mean?
