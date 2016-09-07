@@ -4,10 +4,10 @@ multri is a web app for annotating PDFs a la
 [Genius](http://genius.com). A copy of this app is running at
 https://multri.herokuapp.com.
 
-I designed this with deep learning papers in mind. Machine
-intelligence is becoming very popular but many of the papers are still
-difficult to read without training. There's no documentation you can
-read like for React. I hoped this would make things easier.
+I designed this with deep learning papers in mind. Deep learning is
+becoming very popular but many papers are still difficult to read for
+layprogrammers. There's no documentation you can read like you can for
+React. I hoped this would make things easier.
 
 The backend uses [Livescript](http://livescript.net/). The frontend
 uses [CoffeeScript with JSX](https://github.com/jsdf/coffee-react)
@@ -15,7 +15,7 @@ with React/Redux, and is compiled by Webpack into one big file.
 
 ## Usage
 
-I'll push it to npm at some point; for now just clone the repo. multri
+I'll publish it to npm at some point; for now just clone the repo. multri
 uses MongoDB, so set the `MONGODB_URI` environment variable, then run
 
 ```
@@ -30,7 +30,7 @@ available via Homebrew), then go into [scripts/addpdf](scripts/addpdf)
 and run
 
 ```
-./addpdf.s <link to pdf> <title>
+./addpdf.sh <link to pdf> <title>
 ```
 
 Again, this will add the paper to the database specified by the
@@ -49,13 +49,12 @@ with:
 global <<< require './common'
 ```
 
-Example:
+Example usage:
 
-```
-app.get '/someroute', $ (i, o) ->
-  doc = _ Model.find({})
+```livescript
+app.get '/someroute', $ (i, o) ->  # a function that uses await
+  doc = _ Model.find({})           # await the promise returned by Model.find
   o.json({doc})
-
 ```
 
 I think it's ugly too, but until JavaScript supplies a better solution
