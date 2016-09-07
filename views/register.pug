@@ -1,0 +1,9 @@
+extends account
+block body
+  form(method='post')
+    input(type='text', name='fname', placeholder='First name')
+    input(type='text', name='lname', placeholder='Last name')
+    input(type='text', name='username', placeholder='Email')
+    input(type='password', name='password', placeholder='Password')
+    button.btn(type='submit') Create account
+  .alt-link: a(href='/login') Already have an account?

@@ -1,0 +1,186 @@
+@import base
+@import alias
+
+.nav
+  lh 1
+  pa 1rem 1rem 0.8rem
+  bborb 0.1
+  align center
+  ff font-sans
+  a
+    tdec none
+    fw bold
+    bco()
+  .nav-wrap
+    w 1275px
+    m 0 auto
+    .links
+      a
+        fs 14px
+        ml 0.75rem
+
+.body
+  w 1275px
+  m 2rem auto
+
+.homepage
+  w 1000px
+  m 4rem auto
+  .l, .r
+    bb()
+  .l
+    w 500px
+    co #555
+    h1, p, form
+      lcmb 0.8rem
+    h1
+      co #333
+      fs 16px
+      ls -0.01rem
+      mt 2.5rem
+      lh 1
+  .r
+    w 450px
+    lh 1.4
+    ul.papers
+      li > p
+        mb 1rem
+      span
+        co #888
+        fs 14px
+
+.logo
+  bco()
+  cur pointer
+  disp inline-block
+  tdec none
+  opacity 0.8
+  &:hover
+    opacity 0.9
+    tdec none
+  img
+    valign bottom
+
+#sidebar
+  disp none
+
+.pdf-viewer
+  .paper
+    w 925px
+    pos relative
+    #page-container
+      pos static
+      of hidden
+      z 1
+      bg none
+      .pf
+        brad 5px
+        m 0
+        bbor 0.2
+        lcmb 1rem
+        bs none
+        of hidden
+        // bbs 10px 0.3
+    .marker
+      pos absolute
+      z 3
+      r -8px
+      sq 28px
+      cur pointer
+      brad 9999px
+      bg lighten(color-theme, 60%)
+      &:hover
+        bg lighten(color-theme, 40%)
+      &.selected
+        bg lighten(color-theme, 0%)
+  .margin
+    w 320px
+    ml 30px
+    bb()
+    .aa-message
+      fs 14px
+      align center
+    form
+      textarea
+        h 200px
+        f normal 13px/1.3 font-mono
+        aa auto
+    .add-annot
+      h 300px
+    .annot
+      pl 0.8rem
+      bb()
+      borl solid 5px color-theme
+      .triangle
+        pos absolute
+        l -28px
+        sq 0
+        bor solid 12px transparent
+        border-right-color color-theme
+      .comment
+        pa 0.5rem 0
+        f normal small verdana
+        h1, h2, h3, p, blockquote
+          lcmb 0.5rem
+        li > p:last-child
+          mb 0.5rem
+        &:first-child
+          bort 0
+          pt 0.15rem
+        &:last-child
+          pb 0
+        .adding-comment
+          align center
+        .comment-info
+          mb 0.6rem
+          ff font-sans
+          .image
+            sq 32px
+            of hidden
+            brad 4px
+            wbg()
+            img
+              sq 32px
+          .info
+            ml 0.5rem
+            lh 1
+            .name
+              bco()
+              fw bold
+              fs 15px
+              mb 0.25rem
+           .date
+              co #999
+              fw 400
+              fs 13px
+              a, .part
+                disp inline-block
+                mr 0.5rem
+              a, .link
+                co inherit
+                tdec underline
+
+.yselect-hilite
+  z 2
+  bb()
+  h 20px
+  pos absolute
+  l 0
+  cur pointer
+  bbg 0.1
+  &.selected
+    bor solid 1px rgba(color-theme, 0.2)
+    borl 0
+    borr 0
+    bg rgba(color-theme, 0.2)
+
+.profile
+  w 400px
+  m 0 auto
+
+.index-nav
+  co #888
+  fs 13px
+  a
+    co inherit
+    tdec underline

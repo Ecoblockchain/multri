@@ -1,0 +1,17 @@
+extends base
+block content
+  body
+    .nav: .nav-wrap.cf
+      a.logo.l(href='/'): img(src='/static/img/logo.png')
+      .links.r
+        if user
+          a(href='/profile') Profile
+          a(href='/logout') Logout
+        else
+          a(href='/login') Login
+    if messages.error
+      .error= messages.error
+    if messages.success
+      .success= messages.success
+    .body
+      block body

@@ -1,0 +1,5 @@
+#!/bin/bash
+./addpdf.sh https://arxiv.org/pdf/1511.06434v2.pdf 57c722d59ab1d104ad4e5c3a
+./addpdf.sh https://arxiv.org/pdf/1312.4400v3.pdf 57cbaf659ab1d11e3903dd8d
+./addpdf.sh https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf 57ccc12e9ab1d11f7f4a21a9 
+./addpdf.sh https://arxiv.org/pdf/1312.5602v1.pdf 57cce0a19ab1d13e289f82f3 

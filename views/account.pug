@@ -1,0 +1,13 @@
+extends base
+
+block extraHead
+  link(rel='stylesheet', href='/static/account.css')
+
+block content
+  body
+    if messages.error
+      .alert.error= messages.error
+
+    .account
+      .logo-wrap: a.logo(href='/'): img(src='/static/img/logo.png')
+      block body

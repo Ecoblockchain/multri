@@ -1,0 +1,45 @@
+extends base
+block content
+  - var email = 'contact@multiversetriangle.com'
+  body
+    if messages.error
+      .alert.error= messages.error
+    if messages.success
+      .alert.success= messages.success
+
+    .homepage.cf
+      .r
+        ul.papers
+          for paper in papers
+            unless paper.hide
+              li: p
+                a(href='/paper/' + paper._id)= paper.title
+                br
+                span #{paper.annots.length} annotations
+      .l
+        a.logo(href='/'): img(src='/static/img/logo-lg.png')
+        if user
+          p.index-nav Logged in as #{user.name} &middot; #[a(href='/logout') Logout]
+
+        :markdown-it
+          # Annotated deep learning papers
+
+          Deep learning is becoming popular, but its papers are still written
+          for experts, not laypeople. Multiverse Triangle addresses this
+            problem with annotations. It's like [Genius](http://genius.com/)
+            for research papers. Click any paper on the right for an example.
+
+          # Mailing List
+
+          You can add yourself to our mailing list with this form:
+
+        form.inline(method='post', action='/mailing')
+          input(type='text', name='email', placeholder='Your email address', autofocus)
+          button(type='submit') Subscribe
+
+        :markdown-it
+          Your email address will be saved in our database and we will email
+          you when new papers come out. We won't send you anything else or
+          share your address with anyone.
+
+        p Alternatively, reach us at #[a(href='mailto:' + email)= email].

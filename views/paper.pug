@@ -1,0 +1,34 @@
+extends layout
+
+block title
+  title #{paper.title} | Multiverse Triangle
+
+block extraHead
+  link(rel='stylesheet', href='/static/pdf2htmlex/base.min.css')
+  link(rel='stylesheet', href='/static/pdf2htmlex/fancy.min.css')
+  style !{paper.content.css}
+
+  script(src='/static/pdf2htmlex/compatibility.min.js')
+  script(src='/static/pdf2htmlex/pdf2htmlEX.min.js')
+  script pdf2htmlEX.defaultViewer = new pdf2htmlEX.Viewer({});
+
+block body
+  // suppress errors from pdf2htmlEX
+  #sidebar: #outline
+
+  // main app
+  .pdf-viewer.cf
+    .paper.l !{paper.content.html}
+    .margin#margin.r
+
+  // meta vars  
+  script.
+    window.meta = {
+      isLoggedIn:  !{JSON.stringify(Boolean(user))},
+      currentUser: !{JSON.stringify(user || null)},
+      annots:      !{JSON.stringify(annots)},
+      paperID:     !{JSON.stringify(paper._id.toString())},
+    };
+
+  // humongous js superapp
+  script(src='/static/bundle.js')

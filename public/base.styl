@@ -1,0 +1,107 @@
+@import alias
+
+color-theme = #38e
+color-muted = #888
+
+font-sans = -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'
+font-main = 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, font-sans
+font-mono = Menlo, Consolas, monospace
+
+body
+  f normal 15px/1.5 font-main
+  co #333
+
+input, textarea, button, .btn
+  w 100%
+  bb()
+  ui()
+  bor 0
+  out 0
+  bg none
+  f normal 14px font-sans
+  pa 0.5rem
+
+btnbg(color)
+  bg color
+  &:hover
+    bg lighten(color, 5%)
+
+button, .btn
+  brad 2px
+  bor 0
+  disp block
+  tdec none
+  cur pointer
+  fw bold
+  align center
+  wco()
+  pa 0.5rem 0.9rem
+  btnbg #4a5
+  &.btn-lg
+    pa 0.7rem 0.9rem
+  &.btn-muted
+    btnbg color-muted
+
+input, textarea
+  brad 2px
+  bbs 4px 0.1
+  wbg()
+  bco()
+
+form
+  pa 0.5rem
+  bbg 0.1
+  // wbor 0.2
+  brad 4px
+  // bbs 5px 0.4
+  input, textarea, button, .btn
+    lcmb 0.4rem
+  &.inline
+    disp inline-block
+    input, button, .btn
+      disp inline-block
+      m 0
+      lcmr 0.4rem
+      w auto
+    input
+      w 250px
+
+hr
+  m 1rem 0
+  bor 0
+  wborb 0.3
+
+h1, h2, h3, h4, ul, ol, blockquote, p, form
+  m 0
+  lcmb 1.2rem
+
+blockquote
+  pl 0.85rem
+  borl solid 5px #ddd
+  co #777
+
+li > p:last-child
+  mb 1.2rem
+
+a, .link
+  co color-theme
+  cur pointer
+  tdec none
+  &:hover
+    tdec underline
+
+.cf
+  cf()
+
+.alert
+  ui()
+  wco()
+  pa 1rem
+  ff font-sans
+  fs 15px
+  align center
+  &.error
+    bg maroon
+  &.success
+    bg #293
+

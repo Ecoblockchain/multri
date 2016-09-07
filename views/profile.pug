@@ -1,0 +1,5 @@
+extends layout
+block body
+  form.profile(method='post')
+    input(type='text', name='picture', placeholder='Profile picture URL (make it square)', value=user.pictureUrl || '')
+    button(type='submit') Save

@@ -1,0 +1,216 @@
+pos()
+  position arguments
+
+cover(p)
+  pos p
+  top 0
+  left 0
+  right 0
+  bottom 0
+
+bb()
+  -webkit-box-sizing border-box
+  -moz-box-sizing border-box
+  -ms-box-sizing border-box
+  -o-box-sizing border-box
+  box-sizing border-box
+
+w()
+  width arguments
+h()
+  height arguments
+
+lh()
+  line-height arguments
+
+f()
+  font arguments
+fs()
+  font-size arguments
+fw()
+  font-weight arguments
+ff()
+  font-family arguments
+
+pa()
+  padding arguments
+pt()
+  padding-top arguments
+pr()
+  padding-right arguments
+pb()
+  padding-bottom arguments
+pl()
+  padding-left arguments
+
+co()
+  color arguments
+bg()
+  background arguments
+
+m()
+  margin arguments
+mt()
+  margin-top arguments
+mb()
+  margin-bottom arguments
+ml()
+  margin-left arguments
+mr()
+  margin-right arguments
+
+disp()
+  display arguments
+tdec()
+  text-decoration arguments
+brad()
+  border-radius arguments
+align()
+  text-align arguments
+valign()
+  vertical-align arguments
+
+cap()
+  text-transform arguments
+
+borr()
+  border-right arguments
+bort()
+  border-top arguments
+borl()
+  border-left arguments
+borb()
+  border-bottom arguments
+bor()
+  border arguments
+borc()
+  border-color arguments
+
+bs()
+  box-shadow arguments
+ts()
+  text-shadow arguments
+of()
+  overflow arguments
+antialias()
+  -webkit-font-smoothing arguments
+  -moz-font-smoothing arguments
+  -ms-font-smoothing arguments
+  -o-font-smoothing arguments
+  font-smoothing arguments
+  -moz-osx-font-smoothing grayscale
+aa = antialias
+out()
+  outline arguments
+cur()
+  cursor arguments
+bl(x)
+  rgba(black, x)
+wh(x)
+  rgba(white, x)
+z()
+  z-index arguments
+t()
+  top arguments
+r()
+  right arguments
+bot()
+  bottom arguments
+b()
+  bot arguments
+l()
+  left arguments
+ls()
+  letter-spacing arguments
+bbor()
+  bor solid 1px bl(arguments)
+bbort()
+  bort solid 1px bl(arguments)
+bborr()
+  borr solid 1px bl(arguments)
+bborb()
+  borb solid 1px bl(arguments)
+bborl()
+  borl solid 1px bl(arguments)
+wbor()
+  bor solid 1px wh(arguments)
+wbort()
+  bort solid 1px wh(arguments)
+wborr()
+  borr solid 1px wh(arguments)
+wborb()
+  borb solid 1px wh(arguments)
+wborl()
+  borl solid 1px wh(arguments)
+bbs(spread, blackness)
+  bs 0 1px spread bl(blackness)
+bbg(x = 1)
+  bg bl(x)
+wbg(x = 1)
+  bg wh(x)
+bco(x = 1)
+  co bl(x)
+wco(x = 1)
+  co wh(x)
+maxw()
+  max-width arguments
+maxh()
+  max-height arguments
+lcmb()
+  mb arguments
+  &:last-child
+    mb 0
+lcpb()
+  pb arguments
+  &:last-child
+    pb 0
+lcmr()
+  mr arguments
+  &:last-child
+    mr 0
+lcpr()
+  pr arguments
+  &:last-child
+    pr 0
+sq(x)
+  w x
+  h x
+desat = desaturate
+cf()
+  *zoom 1
+  &::before, &::after
+    content ' '
+    disp table
+  &:after
+    clear both
+  .l
+    float left
+  .r
+    float right
+co-hover(a, b)
+  co a
+  &:hover
+    co b
+bg-hover(a, b)
+  bg a
+  &:hover
+    bg b
+wco-hover(a, b)
+  co-hover wh(a) wh(b)
+bco-hover(a, b)
+  co-hover bl(a) bl(b)
+wbg-hover(a, b)
+  bg-hover wh(a) wh(b)
+bbg-hover(a, b)
+  bg-hover bl(a) bl(b)
+noselect()
+  -webkit-touch-callout none
+  -webkit-user-select none
+  -khtml-user-select none
+  -moz-user-select none
+  -ms-user-select none
+  user-select none
+ui()
+  noselect()
+  aa antialiased
+  cur default

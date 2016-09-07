@@ -1,0 +1,21 @@
+.logo-wrap {
+  text-align: center;
+}
+.account {
+  margin: 6rem auto;
+  width: 300px;
+}
+.account form {
+  margin: 2rem 0;
+}
+.account .alt-link {
+  text-align: center;
+}
+.account .alt-link a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-weight: bold;
+}
+.account .alt-link a:hover {
+  color: rgba(255,255,255,0.8);
+}
