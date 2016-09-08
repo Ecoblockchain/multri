@@ -1,0 +1,8 @@
+# todo
+
+ * keep hilite in place when adding annot content
+ * before going multiuser:
+   * vote on new papers?
+   * community annotations?
+   * stacked annots?
+   * how to handle long chain of comments?
