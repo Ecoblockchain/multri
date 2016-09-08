@@ -1,3 +1,9 @@
+# === include stylesheets ===
+
+require './stylesheets'
+
+# === rest of app ===
+
 React = require 'react'
 { render } = require 'react-dom'
 { Provider } = require 'react-redux'
