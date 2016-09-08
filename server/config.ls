@@ -44,8 +44,7 @@ configure-app = ->
     ..use express-flash!
     ..use passport.initialize!
     ..use passport.session!
-    ..use '/static', express.static path.join __dirname, 'public'
-    ..use '/vendor', express.static path.join __dirname, 'bower_components'
+    ..use '/static', express.static path.join __dirname, '../public'
     ..set 'view engine', 'pug'
     ..locals.ellipsize = ellipsize
     ..use install-convenience

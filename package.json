@@ -5,9 +5,9 @@
   "main": "index.js",
   "repository": "https://github.com/brhs/multri",
   "scripts": {
-    "start": "lsc server.ls",
-    "test": "nodemon --exec lsc ./server.ls",
-    "webpack": "./node_modules/.bin/webpack --progress --colors --watch",
+    "start": "lsc ./server/server.ls",
+    "test": "nodemon --exec lsc ./server/server.ls",
+    "webpack": "./node_modules/.bin/webpack --progress --colors --watch"
   },
   "author": "",
   "license": "ISC",
