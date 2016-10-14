@@ -1,6 +1,5 @@
 # all requests return json, post params are passed as json in post body
-# todo: has to be a better library than jquery, but don't have time to
-# investigate
+# todo: there has to be a better library than jquery
 
 $ = require 'jquery'
 Promise = require 'promise'

@@ -16,11 +16,11 @@ app.get '/', $ (i, o) ->
   o.render 'index', {papers: _ Paper.find {}, {content: 0}}
 
 app.get '/paper/:id', $ (i, o) ->
-  paper = _ (Paper.find-by-id i.params.id .populate 'annots')
+  paper = _ (Paper.find-by-id i.params.id .populate 'notes')
   if paper?
     o.render 'paper',
       paper: paper
-      annots: map utils.strip-annot, paper.annots
+      notes: map utils.strip-note, paper.notes
   else
     o.notfound!
 

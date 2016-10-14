@@ -5,7 +5,7 @@ USERAGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_0) AppleWebKit/537.36 (K
 
 mkdir -p $TMPDIR
 
-wget "$1" --output-document $TMPDIR/_tmp.pdf --user-agent "$USERAGENT"
+curl "$1" -o $TMPDIR/_tmp.pdf --user-agent "$USERAGENT"
 
 gs \
   -dDownsampleColorImages=true \

@@ -15,19 +15,19 @@ block content
               li: p
                 a(href='/paper/' + paper._id)= paper.title
                 br
-                span #{paper.annots.length} annotations
+                span #{paper.notes.length} notes
       .l
-        a.logo(href='/'): img(src='/static/img/logo-lg.png')
+        a.logo(href='/') Multiverse Triangle
         if user
           p.index-nav Logged in as #{user.name} &middot; #[a(href='/logout') Logout]
 
         :markdown-it
           # Annotated deep learning papers
 
-          Deep learning is becoming popular, but its papers are still written
-          for experts, not laypeople. Multiverse Triangle addresses this
-            problem with annotations. It's like [Genius](http://genius.com/)
-            for research papers. Click any paper on the right for an example.
+          Multiverse Triangle hopes to make deep learning more accessible by
+          providing annotations for research papers, like
+          [Genius](https://genius.com) does for everything else.  Click any
+          paper on the right for an example.
 
           # Mailing List
 

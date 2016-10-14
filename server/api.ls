@@ -1,5 +1,5 @@
 { Router } = require 'express'
-{ Annot, Comment } = require './models'
+{ Note, Comment } = require './models'
 utils = require './utils'
 global <<< require './async'
 global <<< require 'prelude-ls'
@@ -18,28 +18,28 @@ router.use (i, o, next) ->
 
 router.use deepclean-mongo.middleware
 
-router.post '/annots', utils.check-login, $ (i, o) ->
+router.post '/notes', utils.check-login, $ (i, o) ->
   inp = i.body
 
-  annot = _ create-annot inp.paperID, inp.type, inp.location
-  comment = _ add-comment annot, i.user, inp.content
+  note = _ create-note inp.paperID, inp.type, inp.location
+  comment = _ add-comment note, i.user, inp.content
 
-  o.json annot: utils.strip-annot annot
+  o.json note: utils.strip-note note
 
-get-annot = $ (i, o, next) ->
-  i.annot = _ (Annot.find-by-id i.params.id .deep-populate 'comments.user')
-  if i.annot
+get-note = $ (i, o, next) ->
+  i.note = _ (Note.find-by-id i.params.id .deep-populate 'comments.user')
+  if i.note
     next!
   else
     o.error 'Not found.'
 
-router.get '/annots/:id', get-annot, (i, o) ->
-  o.json {annot: i.annot}
+router.get '/notes/:id', get-note, (i, o) ->
+  o.json {note: i.note}
 
-create-annot = $ (paper-id, type, loc) ->
+create-note = $ (paper-id, type, loc) ->
   paper = _ Paper.find-by-id paper-id
   if paper
-    annot = _ Annot.create do
+    note = _ Note.create do
       comments: []
       paper: paper
       type: type
@@ -47,46 +47,46 @@ create-annot = $ (paper-id, type, loc) ->
         page: loc.page
         offset: loc.offset
 
-    paper.annots.push annot
+    paper.notes.push note
     _ paper.save!
-    annot
+    note
 
-add-comment = $ (annot, user, content) ->
+add-comment = $ (note, user, content) ->
   comment = _ Comment.create do
-    annot: annot
+    note: note
     user: user
     when: new Date
     content:
       text: content
       rendered: markdown-it.render content
 
-  annot.comments.push comment
-  _ annot.save!
+  note.comments.push comment
+  _ note.save!
 
   id = comment._id
   comment = _ (Comment.find-by-id id .deep-populate 'user')
-  delete comment.annot
+  delete comment.note
   comment
 
-router.post '/annots/:id/comments', get-annot, $ (i, o) ->
-  comment = _ add-comment i.annot, i.user, i.body.comment
+router.post '/notes/:id/comments', get-note, $ (i, o) ->
+  comment = _ add-comment i.note, i.user, i.body.comment
   o.json {comment}
 
 get-comment = (i, o, next) ->
-  get-annot i, o, ->
+  get-note i, o, ->
     comment = _ (Comment.find-by-id i.params.cid .populate 'user')
     unless comment
       return o.error 'Comment not found.'
 
-    unless comment.annot.to-string! is i.annot._id.to-string!
-      console.log comment.annot
-      console.log i.annot._id
-      return o.error 'Wrong annotation.'
+    unless comment.note.to-string! is i.note._id.to-string!
+      console.log comment.note
+      console.log i.note._id
+      return o.error 'Wrong note.'
 
     i.comment = comment
     next!
 
-router.post '/annots/:id/comments/:cid', get-comment, $ (i, o) ->
+router.post '/notes/:id/comments/:cid', get-comment, $ (i, o) ->
   i.comment.content
     ..text = i.body.content
     ..rendered = markdown-it.render i.body.content
@@ -94,15 +94,15 @@ router.post '/annots/:id/comments/:cid', get-comment, $ (i, o) ->
   _ i.comment.save!
   o.json {i.comment}
 
-router.delete '/annots/:id/comments/:cid', get-comment, $ (i, o) ->
-  i.annot.comments.pull i.comment._id
+router.delete '/notes/:id/comments/:cid', get-comment, $ (i, o) ->
+  i.note.comments.pull i.comment._id
 
-  _ i.annot.save!
-  if i.annot.comments.length is 0
-    paper = _ Paper.find-by-id i.annot.paper
-    paper.annots.pull i.annot._id
+  _ i.note.save!
+  if i.note.comments.length is 0
+    paper = _ Paper.find-by-id i.note.paper
+    paper.notes.pull i.note._id
     _ paper.save!
-    _ i.annot.remove!
+    _ i.note.remove!
 
   _ i.comment.remove!
 

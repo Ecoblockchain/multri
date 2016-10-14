@@ -1,4 +1,4 @@
-strip-annot = ->
+strip-note = ->
   id: it._id
   type: it.type
   location: it.location
@@ -10,5 +10,5 @@ check-login = (i, o, next) ->
   next!
 
 module.exports = {
-  strip-annot, check-login
+  strip-note, check-login
 }

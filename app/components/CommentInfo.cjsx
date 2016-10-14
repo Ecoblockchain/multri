@@ -1,15 +1,16 @@
 React = require 'react'
 moment = require 'moment'
 { connect } = require 'react-redux'
+
 { stifle } = require '../utils'
-{ editComment, deleteComment } = require '../actions'
+{ editComment, removeComment } = require '../ducks/comments'
 
 dispatchProps = (dispatch) ->
   onEdit: (comment) ->
     dispatch editComment comment
 
   onDelete: (comment) ->
-    dispatch deleteComment comment
+    dispatch removeComment comment
 
 conn = connect null, dispatchProps
 

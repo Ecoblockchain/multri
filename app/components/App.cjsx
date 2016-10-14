@@ -1,15 +1,15 @@
 React = require 'react'
 { connect } = require 'react-redux'
 
-Annot = require './Annot'
-AddAnnot = require './AddAnnot'
+Note = require './Note'
+NewNote = require './NewNote'
 Loading = require './Loading'
 
 stateProps = (state) ->
-  annot: state.viewingAnnot
+  note: state.note
 
-module.exports = connect(stateProps) ({annot}) ->
-  if annot?
-    <Annot annot={annot} />
+module.exports = connect(stateProps) ({note}) ->
+  if note?
+    <Note note={note} />
   else
-    <AddAnnot />
+    <NewNote />

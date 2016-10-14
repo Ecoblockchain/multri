@@ -1,9 +1,13 @@
 thunkMiddleware = require('redux-thunk').default
 { createStore, applyMiddleware } = require 'redux'
-reducer = require './reducers'
+makeReducer = require './ducks'
 
 store = null
 
 module.exports = ->
-  store ?= createStore reducer, applyMiddleware thunkMiddleware
+  unless store?
+    reducer = makeReducer()
+    enhancer = applyMiddleware thunkMiddleware
+    store = createStore reducer, enhancer
+
   store

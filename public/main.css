@@ -1,5 +1,5 @@
 body {
-  font: normal 15px/1.5 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font: normal 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   color: #333;
 }
 input,
@@ -28,7 +28,7 @@ button,
   border: 0;
   outline: 0;
   background: none;
-  font: normal 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font: normal 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   padding: 0.5rem;
 }
 button,
@@ -63,7 +63,7 @@ button.btn-muted:hover,
 input,
 textarea {
   border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   background: #fff;
   color: #000;
 }
@@ -182,7 +182,7 @@ a:hover,
   cursor: default;
   color: #fff;
   padding: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 15px;
   text-align: center;
 }
@@ -197,7 +197,7 @@ a:hover,
   padding: 1rem 1rem 0.8rem;
   border-bottom: solid 1px rgba(0,0,0,0.1);
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 .nav a {
   text-decoration: none;
@@ -244,35 +244,37 @@ a:hover,
 }
 .homepage .l h1 {
   color: #333;
-  font-size: 16px;
+  font: bold 16px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   letter-spacing: -0.01rem;
   margin-top: 2.5rem;
-  line-height: 1;
 }
 .homepage .r {
   width: 450px;
+  padding-left: 2rem;
   line-height: 1.4;
+}
+.homepage .r ul.papers {
+  list-style: none;
+  padding: 0;
 }
 .homepage .r ul.papers li > p {
   margin-bottom: 1rem;
 }
-.homepage .r ul.papers span {
+.homepage .r ul.papers li > p span {
   color: #888;
-  font-size: 14px;
+  font-size: 90%;
 }
 .logo {
   color: #000;
   cursor: pointer;
   display: inline-block;
+  font: bold 200% -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-decoration: none;
   opacity: 0.8;
 }
 .logo:hover {
   opacity: 0.9;
   text-decoration: none;
-}
-.logo img {
-  vertical-align: bottom;
 }
 #sidebar {
   display: none;
@@ -323,7 +325,7 @@ a:hover,
   -o-box-sizing: border-box;
   box-sizing: border-box;
 }
-.pdf-viewer .margin .aa-message {
+.pdf-viewer .margin .nn-message {
   font-size: 14px;
   text-align: center;
 }
@@ -337,10 +339,10 @@ a:hover,
   font-smoothing: auto;
   -moz-osx-font-smoothing: grayscale;
 }
-.pdf-viewer .margin .add-annot {
+.pdf-viewer .margin .add-note {
   height: 300px;
 }
-.pdf-viewer .margin .annot {
+.pdf-viewer .margin .note {
   padding-left: 0.8rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -349,7 +351,7 @@ a:hover,
   box-sizing: border-box;
   border-left: solid 5px #38e;
 }
-.pdf-viewer .margin .annot .triangle {
+.pdf-viewer .margin .note .triangle {
   position: absolute;
   left: -28px;
   width: 0;
@@ -357,74 +359,74 @@ a:hover,
   border: solid 12px transparent;
   border-right-color: #38e;
 }
-.pdf-viewer .margin .annot .comment {
+.pdf-viewer .margin .note .comment {
   padding: 0.5rem 0;
-  font: normal small verdana;
+  font: normal small verdana, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
-.pdf-viewer .margin .annot .comment h1,
-.pdf-viewer .margin .annot .comment h2,
-.pdf-viewer .margin .annot .comment h3,
-.pdf-viewer .margin .annot .comment p,
-.pdf-viewer .margin .annot .comment blockquote {
+.pdf-viewer .margin .note .comment h1,
+.pdf-viewer .margin .note .comment h2,
+.pdf-viewer .margin .note .comment h3,
+.pdf-viewer .margin .note .comment p,
+.pdf-viewer .margin .note .comment blockquote {
   margin-bottom: 0.5rem;
 }
-.pdf-viewer .margin .annot .comment h1:last-child,
-.pdf-viewer .margin .annot .comment h2:last-child,
-.pdf-viewer .margin .annot .comment h3:last-child,
-.pdf-viewer .margin .annot .comment p:last-child,
-.pdf-viewer .margin .annot .comment blockquote:last-child {
+.pdf-viewer .margin .note .comment h1:last-child,
+.pdf-viewer .margin .note .comment h2:last-child,
+.pdf-viewer .margin .note .comment h3:last-child,
+.pdf-viewer .margin .note .comment p:last-child,
+.pdf-viewer .margin .note .comment blockquote:last-child {
   margin-bottom: 0;
 }
-.pdf-viewer .margin .annot .comment li > p:last-child {
+.pdf-viewer .margin .note .comment li > p:last-child {
   margin-bottom: 0.5rem;
 }
-.pdf-viewer .margin .annot .comment:first-child {
+.pdf-viewer .margin .note .comment:first-child {
   border-top: 0;
   padding-top: 0.15rem;
 }
-.pdf-viewer .margin .annot .comment:last-child {
+.pdf-viewer .margin .note .comment:last-child {
   padding-bottom: 0;
 }
-.pdf-viewer .margin .annot .comment .adding-comment {
+.pdf-viewer .margin .note .comment .adding-comment {
   text-align: center;
 }
-.pdf-viewer .margin .annot .comment .comment-info {
+.pdf-viewer .margin .note .comment .comment-info {
   margin-bottom: 0.6rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
-.pdf-viewer .margin .annot .comment .comment-info .image {
+.pdf-viewer .margin .note .comment .comment-info .image {
   width: 32px;
   height: 32px;
   overflow: hidden;
   border-radius: 4px;
   background: #fff;
 }
-.pdf-viewer .margin .annot .comment .comment-info .image img {
+.pdf-viewer .margin .note .comment .comment-info .image img {
   width: 32px;
   height: 32px;
 }
-.pdf-viewer .margin .annot .comment .comment-info .info {
+.pdf-viewer .margin .note .comment .comment-info .info {
   margin-left: 0.5rem;
   line-height: 1;
 }
-.pdf-viewer .margin .annot .comment .comment-info .info .name {
+.pdf-viewer .margin .note .comment .comment-info .info .name {
   color: #000;
   font-weight: bold;
   font-size: 15px;
   margin-bottom: 0.25rem;
 }
-.pdf-viewer .margin .annot .comment .comment-info .date {
+.pdf-viewer .margin .note .comment .comment-info .date {
   color: #999;
   font-weight: 400;
   font-size: 13px;
 }
-.pdf-viewer .margin .annot .comment .comment-info .date a,
-.pdf-viewer .margin .annot .comment .comment-info .date .part {
+.pdf-viewer .margin .note .comment .comment-info .date a,
+.pdf-viewer .margin .note .comment .comment-info .date .part {
   display: inline-block;
   margin-right: 0.5rem;
 }
-.pdf-viewer .margin .annot .comment .comment-info .date a,
-.pdf-viewer .margin .annot .comment .comment-info .date .link {
+.pdf-viewer .margin .note .comment .comment-info .date a,
+.pdf-viewer .margin .note .comment .comment-info .date .link {
   color: inherit;
   text-decoration: underline;
 }

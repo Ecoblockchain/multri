@@ -1,4 +1,5 @@
-var webpack = require('webpack')
+const webpack = require('webpack')
+
 module.exports = {
   cache: true,
   entry: './app/index',
@@ -19,6 +20,7 @@ module.exports = {
       {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'}
     ]
   },
+  devtool: 'inline-source-map',
   plugins: [
     /*
     new webpack.optimize.UglifyJsPlugin(),

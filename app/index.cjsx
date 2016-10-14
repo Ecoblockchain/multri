@@ -1,6 +1,8 @@
 # === include stylesheets ===
 
-require './stylesheets'
+require 'normalize-css/normalize.css'
+require 'spinkit/css/spinners/7-three-bounce.css'
+require 'katex/dist/katex.min.css'
 
 # === rest of app ===
 
@@ -9,7 +11,8 @@ React = require 'react'
 { Provider } = require 'react-redux'
 
 App = require './components/App'
-{ addMarker } = require './actions'
+{ addNewNote } = require './ducks/notes'
+
 store = require('./store')()
 
 render(
@@ -17,5 +20,5 @@ render(
   document.getElementById 'margin'
 )
 
-for annot in window.meta.annots
-  store.dispatch addMarker annot
+for note in window.meta.notes
+  store.dispatch addNewNote note

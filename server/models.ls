@@ -23,9 +23,9 @@ Paper = new Schema do
   content:
     css: String
     html: String
-  annots: [ref 'Annot']
+  notes: [ref 'Note']
 
-Annot = new Schema do
+Note = new Schema do
   paper: ref 'Paper'
   type: String
   location:
@@ -34,7 +34,7 @@ Annot = new Schema do
   comments: [ref 'Comment']
 
 Comment = new Schema do
-  annot: ref 'Annot'
+  note: ref 'Note'
   user: ref 'User'
   when: Date
   content:
@@ -45,12 +45,12 @@ Subscriber = new Schema do
   email: String
 
 User.plugin plm
-Annot.plugin deep-populate
+Note.plugin deep-populate
 Comment.plugin deep-populate
 
 module.exports =
   User: mongoose.model 'User', User
   Paper: mongoose.model 'Paper', Paper
-  Annot: mongoose.model 'Annot', Annot
+  Note: mongoose.model 'Note', Note
   Comment: mongoose.model 'Comment', Comment
   Subscriber: mongoose.model 'Subscriber', Subscriber
