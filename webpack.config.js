@@ -12,11 +12,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.jsx$/, loader: 'jsx-loader?insertPragma=React.DOM'},
       {test: /\.cjsx$/, loaders: ['coffee', 'cjsx']},
-      {test: /\.coffee$/, loader: 'coffee'},
       {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.styl$/, loader: 'css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/stylus/'},
       {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'}
     ]
   },

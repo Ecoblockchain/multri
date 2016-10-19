@@ -3,7 +3,7 @@
 noteReducer = require './note'
 { resetNewNote } = require './common'
 
-{ Marker, selectNotePos } = require '../notes'
+{ Hilite, selectNotePos } = require '../notes'
 { api, splat } = require '../utils'
 
 reduceSetType = (state = null, action) ->
@@ -69,11 +69,11 @@ reducer.prepareNewNote = (type) ->
 submittingNewNote = ->
   type: 'new note submitting'
 
-addMarker = (dispatch, note) ->
-  marker = new Marker(note)
-  marker.onClick = ->
+addHilite = (dispatch, note) ->
+  hilite = new Hilite(note)
+  hilite.onClick = ->
     dispatch noteReducer.requestNote note
-  marker
+  hilite
 
 addNote = (note) ->
   type: 'notes add'
@@ -81,9 +81,9 @@ addNote = (note) ->
 
 reducer.addNewNote = (note, select) ->
   (dispatch) ->
-    note._marker = addMarker dispatch, note
+    note._hilite = addHilite dispatch, note
     if select
-      note.marker.onClick()
+      note.hilite.onClick()
     dispatch addNote note
 
 reducer.submitNewNote = (type, content, location) ->

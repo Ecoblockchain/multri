@@ -1,4 +1,4 @@
 module.exports =
   selectNotePos: require './select'
-  Marker:        require './marker'
+  Hilite:        require './hilite'
   moveNote:      require './move'

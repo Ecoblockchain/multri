@@ -21,11 +21,11 @@ reducer = (state = null, action) ->
 
 # ---
 
-selectMarker = (marker) ->
-  marker.select()
+selectHilite = (hilite) ->
+  hilite.select()
   for other in getStore().getState().notes.all
-    unless other._marker is marker
-      other._marker.deselect()
+    unless other._hilite is hilite
+      other._hilite.deselect()
 
 setNote = (note) ->
   type: 'note set'
@@ -35,7 +35,7 @@ requestingNote = (note) ->
   setNote
     id: note.id
     loading: yes
-    _marker: note._marker
+    _hilite: note._hilite
 
 reducer.requestNote = (note) ->
   (dispatch) ->
@@ -43,18 +43,18 @@ reducer.requestNote = (note) ->
     dispatch setNote null
 
     if curr and (curr.id is note.id)
-      note._marker.deselect()
+      note._hilite.deselect()
     else
       dispatch requestingNote note
       dispatch resetNewNote()
 
       api.get("notes/#{note.id}").then (data) ->
-        data.note._marker = note._marker
+        data.note._hilite = note._hilite
 
         dispatch setNote null
         dispatch setNote data.note
 
-        selectMarker note._marker
+        selectHilite note._hilite
 
 addingNoteComment = ->
   type: 'note comment adding'

@@ -21,7 +21,7 @@ module.exports = conn React.createClass
     if @props.note.loading
       classes.push 'loading'
 
-    <div className={classes.join ' '} ref={(node) => moveNote $(node), @props.note._marker}>
+    <div className={classes.join ' '} ref={(node) => moveNote $(node), @props.note._hilite}>
       <div className='triangle' />
       {
         if @props.note.loading

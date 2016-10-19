@@ -1,13 +1,22 @@
 $ = require 'jquery'
 utils = require './utils'
 
+getNoteTop = (note) ->
+  { page, offset } = note.location
+  $('#page-container .pf').eq(page).position().top + offset
+
 class Hilite
-  constructor: (cls) ->
-    @hilite = $('<div />')
+  constructor: (note) ->
+    @hilite = $('<div/>')
       .addClass 'yselect-hilite'
-      .addClass cls
       .width $('#page-container .pf').outerWidth()
       .appendTo '#page-container'
+      .click (e) => @onClick e
+
+    @top getNoteTop note
+    @toggle no
+
+    note._hilite = @
 
   click: (cb) ->
     @hilite.click cb
@@ -26,5 +35,8 @@ class Hilite
 
   toggle: (b) ->
     @hilite.toggleClass 'selected', b
+
+  select: -> @toggle yes
+  deselect: -> @toggle no
 
 module.exports = Hilite
