@@ -9,7 +9,9 @@ block content
 
     .homepage
       .top
-        .logo Multiverse Triangle
+        if davheed
+          .davheed: img(src='/static/img/davheed.png')
+        a.logo(href='/') Multiverse Triangle
         .slogan #[a(href='https://genius.com') Genius] for deep learning research papers
         form.inline.r(method='post', action='/mailing')
           input(type='text', name='email', placeholder='Your email address', autofocus)

@@ -13,7 +13,12 @@ app.use '/', require './auth'
 app.use '/api', require './api'
 
 app.get '/', async (i, o) ->
-  o.render 'index', {papers: await Paper.find {}, {content: 0}}
+  davheed = no
+  if 'yes' in [i.query.davheed, i.cookies.davheed]
+    o.cookie 'davheed', 'yes', { max-age: 900000 }
+    davheed = yes
+
+  o.render 'index', {davheed, papers: await Paper.find {}, {content: 0}}
 
 app.get '/paper/:id', async (i, o) ->
   paper = await (Paper.find-by-id i.params.id .populate 'notes')
