@@ -12,11 +12,11 @@ app = config.configure-app express!
 app.use '/', require './auth'
 app.use '/api', require './api'
 
-app.get '/', $ (i, o) ->
-  o.render 'index', {papers: _ Paper.find {}, {content: 0}}
+app.get '/', async (i, o) ->
+  o.render 'index', {papers: await Paper.find {}, {content: 0}}
 
-app.get '/paper/:id', $ (i, o) ->
-  paper = _ (Paper.find-by-id i.params.id .populate 'notes')
+app.get '/paper/:id', async (i, o) ->
+  paper = await (Paper.find-by-id i.params.id .populate 'notes')
   if paper?
     o.render 'paper',
       paper: paper
@@ -24,7 +24,7 @@ app.get '/paper/:id', $ (i, o) ->
   else
     o.notfound!
 
-app.post '/mailing', $ (i, o) ->
+app.post '/mailing', async (i, o) ->
   sub = ((_ Subscriber.find-one {email: i.body.email}) or
          (_ Subscriber.create email: i.body.email))
 
@@ -34,9 +34,9 @@ app.post '/mailing', $ (i, o) ->
 app.get '/profile', utils.check-login, (i, o) ->
   o.render 'profile'
 
-app.post '/profile', utils.check-login, $ (i, o) ->
+app.post '/profile', utils.check-login, async (i, o) ->
   i.user.picture-url = i.body.picture
-  _ i.user.save!
+  await i.user.save!
   o.redirect '/profile'
 
 app.use (i, o, next) ->

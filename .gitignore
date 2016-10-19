@@ -43,5 +43,5 @@ jspm_packages
 # On OSX
 .DS_Store
 
-bower_components
+# MongoDB dumps
 dump

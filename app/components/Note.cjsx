@@ -6,7 +6,7 @@ NewComment = require './NewComment'
 Comment = require './Comment'
 Loading = require './Loading'
 
-{ NoteMover } = require '../notes'
+{ moveNote } = require '../notes'
 { addNoteComment } = require '../ducks/note'
 
 dispatchProps = (dispatch) ->
@@ -16,22 +16,12 @@ dispatchProps = (dispatch) ->
 conn = connect null, dispatchProps
 
 module.exports = conn React.createClass
-  componentDidMount: ->
-    mover = new NoteMover @noteElm, @props.note._marker
-    @move = mover.move.bind(mover)
-
-    $(document).on 'scroll', @move
-    @move()
-
-  componentWillUnmount: ->
-    $(document).off 'scroll', null, @move
-
   render: ->
     classes = ['note', @props.note.type]
     if @props.note.loading
       classes.push 'loading'
 
-    <div className={classes.join ' '} ref={(node) => @noteElm = $(node)}>
+    <div className={classes.join ' '} ref={(node) => moveNote $(node), @props.note._marker}>
       <div className='triangle' />
       {
         if @props.note.loading

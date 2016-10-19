@@ -17,23 +17,13 @@ module.exports = class Marker
     @hilite.toggle no
     @hilite.click onClick
 
-    @marker = $ '<div />'
-      .addClass 'marker'
-      .addClass note.type
-      .appendTo '.pdf-viewer .paper'
-      .hover    (=> @hilite.toggle yes), (=> @hilite.toggle @selected)
-      .click    onClick
-
-    utils.centeredTop @marker, @top
     note._marker = @
 
-  toggleSelect: (b) ->
-    @marker.toggleClass 'selected', b
-    @hilite.toggle b
-    @selected = b
+  toggleSelect: (@selected) ->
+    @hilite.toggle @selected
 
   select:   -> @toggleSelect yes
   deselect: -> @toggleSelect no
 
   remove: ->
-    @marker.remove()
+    @hilite.remove()

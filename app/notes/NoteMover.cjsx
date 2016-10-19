@@ -23,6 +23,8 @@ module.exports = class NoteMover
     Math.max(@papertop - $(document).scrollTop(), lo, Math.min(y, hi))
 
   move: ->
+    start = performance.now()
+
     lo = (@thalf + @padding)
     hi = ($(window).height() - @padding - @thalf)
     y  = @marktop - $(document).scrollTop()
@@ -38,3 +40,5 @@ module.exports = class NoteMover
       setTop @note, @bracket(y - @note.height() / 2)
 
     setTop @triangle, @marktop - @note.offset().top - @thalf
+
+    console.log(performance.now() - start)

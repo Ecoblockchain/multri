@@ -18,16 +18,16 @@ router.use (i, o, next) ->
 
 router.use deepclean-mongo.middleware
 
-router.post '/notes', utils.check-login, $ (i, o) ->
+router.post '/notes', utils.check-login, async (i, o) ->
   inp = i.body
 
-  note = _ create-note inp.paperID, inp.type, inp.location
-  comment = _ add-comment note, i.user, inp.content
+  note = await create-note inp.paperID, inp.type, inp.location
+  comment = await add-comment note, i.user, inp.content
 
   o.json note: utils.strip-note note
 
-get-note = $ (i, o, next) ->
-  i.note = _ (Note.find-by-id i.params.id .deep-populate 'comments.user')
+get-note = async (i, o, next) ->
+  i.note = await (Note.find-by-id i.params.id .deep-populate 'comments.user')
   if i.note
     next!
   else
@@ -36,10 +36,10 @@ get-note = $ (i, o, next) ->
 router.get '/notes/:id', get-note, (i, o) ->
   o.json {note: i.note}
 
-create-note = $ (paper-id, type, loc) ->
-  paper = _ Paper.find-by-id paper-id
+create-note = async (paper-id, type, loc) ->
+  paper = await Paper.find-by-id paper-id
   if paper
-    note = _ Note.create do
+    note = await Note.create do
       comments: []
       paper: paper
       type: type
@@ -48,11 +48,11 @@ create-note = $ (paper-id, type, loc) ->
         offset: loc.offset
 
     paper.notes.push note
-    _ paper.save!
+    await paper.save!
     note
 
-add-comment = $ (note, user, content) ->
-  comment = _ Comment.create do
+add-comment = async (note, user, content) ->
+  comment = await Comment.create do
     note: note
     user: user
     when: new Date
@@ -61,20 +61,20 @@ add-comment = $ (note, user, content) ->
       rendered: markdown-it.render content
 
   note.comments.push comment
-  _ note.save!
+  await note.save!
 
   id = comment._id
-  comment = _ (Comment.find-by-id id .deep-populate 'user')
+  comment = await (Comment.find-by-id id .deep-populate 'user')
   delete comment.note
   comment
 
-router.post '/notes/:id/comments', get-note, $ (i, o) ->
-  comment = _ add-comment i.note, i.user, i.body.comment
+router.post '/notes/:id/comments', get-note, async (i, o) ->
+  comment = await add-comment i.note, i.user, i.body.comment
   o.json {comment}
 
 get-comment = (i, o, next) ->
   get-note i, o, ->
-    comment = _ (Comment.find-by-id i.params.cid .populate 'user')
+    comment = await (Comment.find-by-id i.params.cid .populate 'user')
     unless comment
       return o.error 'Comment not found.'
 
@@ -86,25 +86,25 @@ get-comment = (i, o, next) ->
     i.comment = comment
     next!
 
-router.post '/notes/:id/comments/:cid', get-comment, $ (i, o) ->
+router.post '/notes/:id/comments/:cid', get-comment, async (i, o) ->
   i.comment.content
     ..text = i.body.content
     ..rendered = markdown-it.render i.body.content
 
-  _ i.comment.save!
+  await i.comment.save!
   o.json {i.comment}
 
-router.delete '/notes/:id/comments/:cid', get-comment, $ (i, o) ->
+router.delete '/notes/:id/comments/:cid', get-comment, async (i, o) ->
   i.note.comments.pull i.comment._id
 
-  _ i.note.save!
+  await i.note.save!
   if i.note.comments.length is 0
-    paper = _ Paper.find-by-id i.note.paper
+    paper = await Paper.find-by-id i.note.paper
     paper.notes.pull i.note._id
-    _ paper.save!
-    _ i.note.remove!
+    await paper.save!
+    await i.note.remove!
 
-  _ i.comment.remove!
+  await i.comment.remove!
 
   o.json {success: yes}
 

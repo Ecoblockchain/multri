@@ -1,4 +1,4 @@
-{ splat } = require '../utils'
+{ api, splat } = require '../utils'
 
 reducer = (state = {}, action) ->
   if action.commentID is state.id
@@ -11,7 +11,7 @@ reducer = (state = {}, action) ->
         splat action.comment, editing: no, saving: no
       when 'comment removing'
         splat state, deleting: yes
-      when 'coment removed'
+      when 'comment removed'
         return null
       else
         state

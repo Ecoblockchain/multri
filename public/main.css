@@ -1,6 +1,7 @@
 body {
   font: normal 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   color: #333;
+  margin: 0;
 }
 input,
 textarea,
@@ -205,7 +206,7 @@ a:hover,
   color: #000;
 }
 .nav .nav-wrap {
-  width: 1275px;
+  width: 1105px;
   margin: 0 auto;
 }
 .nav .nav-wrap .links a {
@@ -213,12 +214,15 @@ a:hover,
   margin-left: 0.75rem;
 }
 .body {
-  width: 1275px;
+  width: 1105px;
   margin: 2rem auto;
 }
 .homepage {
   width: 1000px;
   margin: 4rem auto;
+}
+.homepage .logo {
+  font-size: 180%;
 }
 .homepage .l,
 .homepage .r {
@@ -244,9 +248,11 @@ a:hover,
 }
 .homepage .l h1 {
   color: #333;
-  font: bold 16px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font: bold 130%/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   letter-spacing: -0.01rem;
-  margin-top: 2.5rem;
+}
+.homepage .l .section {
+  margin-top: 2rem;
 }
 .homepage .r {
   width: 450px;
@@ -268,7 +274,7 @@ a:hover,
   color: #000;
   cursor: pointer;
   display: inline-block;
-  font: bold 200% -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font: bold 120% -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   text-decoration: none;
   opacity: 0.8;
 }
@@ -308,7 +314,7 @@ a:hover,
   height: 28px;
   cursor: pointer;
   border-radius: 9999px;
-  background: #adcff8;
+  background: #ccc;
 }
 .pdf-viewer .paper .marker:hover {
   background: #85b8f5;
@@ -317,8 +323,9 @@ a:hover,
   background: #38e;
 }
 .pdf-viewer .margin {
-  width: 320px;
+  width: 150px;
   margin-left: 30px;
+  position: relative;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -343,25 +350,33 @@ a:hover,
   height: 300px;
 }
 .pdf-viewer .margin .note {
-  padding-left: 0.8rem;
+  z-index: 4;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
   box-sizing: border-box;
-  border-left: solid 5px #38e;
+  box-shadow: 0 0 0 2px #38e;
+  background: #fff;
+  position: relative;
+  width: 275px;
+  left: -125px;
 }
 .pdf-viewer .margin .note .triangle {
   position: absolute;
-  left: -28px;
+  left: -25px;
   width: 0;
   height: 0;
   border: solid 12px transparent;
   border-right-color: #38e;
 }
 .pdf-viewer .margin .note .comment {
-  padding: 0.5rem 0;
-  font: normal small verdana, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  padding: 0.75rem;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.pdf-viewer .margin .note .comment:not(:last-child) {
+  border-bottom: solid 1px rgba(0,0,0,0.05);
 }
 .pdf-viewer .margin .note .comment h1,
 .pdf-viewer .margin .note .comment h2,
@@ -379,13 +394,6 @@ a:hover,
 }
 .pdf-viewer .margin .note .comment li > p:last-child {
   margin-bottom: 0.5rem;
-}
-.pdf-viewer .margin .note .comment:first-child {
-  border-top: 0;
-  padding-top: 0.15rem;
-}
-.pdf-viewer .margin .note .comment:last-child {
-  padding-bottom: 0;
 }
 .pdf-viewer .margin .note .comment .adding-comment {
   text-align: center;
@@ -412,13 +420,13 @@ a:hover,
 .pdf-viewer .margin .note .comment .comment-info .info .name {
   color: #000;
   font-weight: bold;
-  font-size: 15px;
-  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 .pdf-viewer .margin .note .comment .comment-info .date {
   color: #999;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 90%;
 }
 .pdf-viewer .margin .note .comment .comment-info .date a,
 .pdf-viewer .margin .note .comment .comment-info .date .part {

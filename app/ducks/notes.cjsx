@@ -4,7 +4,7 @@ noteReducer = require './note'
 { resetNewNote } = require './common'
 
 { Marker, selectNotePos } = require '../notes'
-{ splat } = require '../utils'
+{ api, splat } = require '../utils'
 
 reduceSetType = (state = null, action) ->
   if action.type is 'new note set type'

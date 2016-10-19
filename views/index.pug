@@ -21,27 +21,22 @@ block content
         if user
           p.index-nav Logged in as #{user.name} &middot; #[a(href='/logout') Logout]
 
-        :markdown-it
-          # Annotated deep learning papers
+        .section
+          h1 Annotated deep learning papers
+          p.
+            Multiverse Triangle makes deep learning more accessible with
+            annotated research papers, like [Genius](https://genius.com) does for
+            songs.  Click any paper on the right for an example.
 
-          Multiverse Triangle hopes to make deep learning more accessible by
-          providing annotations for research papers, like
-          [Genius](https://genius.com) does for everything else.  Click any
-          paper on the right for an example.
+        .section
+          h1 Mailing list
+          form.inline(method='post', action='/mailing')
+            input(type='text', name='email', placeholder='Your email address', autofocus)
+            button(type='submit') Subscribe
+          p.
+            We'll email you when new papers come out. We won't spam you or share
+            your address with anyone.
 
-          # Mailing List
-
-          You can add yourself to our mailing list with this form:
-
-        form.inline(method='post', action='/mailing')
-          input(type='text', name='email', placeholder='Your email address', autofocus)
-          button(type='submit') Subscribe
-
-        :markdown-it
-          Your email address will be saved in our database and we will email
-          you when new papers come out. We won't send you anything else or
-          share your address with anyone.
-
-          # Source
-
-          Multiverse Triangle is open source on Github as [multri](https://github.com/brhs/multri).
+        .section
+          p <a class="github-button" href="https://github.com/brhs/multri" data-style="mega" data-count-href="/brhs/multri/stargazers" data-count-api="/repos/brhs/multri#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star brhs/multri on GitHub">Star</a>
+          script(async, defer, src='https://buttons.github.io/buttons.js')

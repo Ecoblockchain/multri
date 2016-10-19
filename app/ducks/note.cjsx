@@ -1,8 +1,7 @@
 R = require 'ramda'
 
-getStore  = require('../store')
-{ splat } = require '../utils'
-api       = require '../api'
+getStore       = require('../store')
+{ api, splat } = require '../utils'
 
 { resetNewNote } = require './common'
 commentsReducer  = require './comments'
@@ -25,8 +24,8 @@ reducer = (state = null, action) ->
 selectMarker = (marker) ->
   marker.select()
   for other in getStore().getState().notes.all
-    unless other.marker is marker
-      other.marker.deselect()
+    unless other._marker is marker
+      other._marker.deselect()
 
 setNote = (note) ->
   type: 'note set'
