@@ -7,36 +7,16 @@ block content
     if messages.success
       .alert.success= messages.success
 
-    .homepage.cf
-      .r
-        ul.papers
-          for paper in papers
-            unless paper.hide
-              li: p
-                a(href='/paper/' + paper._id)= paper.title
-                br
-                span #{paper.notes.length} notes
-      .l
-        a.logo(href='/') Multiverse Triangle
-        if user
-          p.index-nav Logged in as #{user.name} &middot; #[a(href='/logout') Logout]
+    .homepage
+      .top
+        .logo Multiverse Triangle
+        .slogan #[a(href='https://genius.com') Genius] for deep learning research papers
+        form.inline.r(method='post', action='/mailing')
+          input(type='text', name='email', placeholder='Your email address', autofocus)
+          button(type='submit') Subscribe
+        .subtitle We'll email you when new papers come out.
 
-        .section
-          h1 Annotated deep learning papers
-          p.
-            Multiverse Triangle makes deep learning more accessible with
-            annotated research papers, like #[a(href='https://genius.com') Genius] does for
-            songs.  Click any paper on the right for an example.
-
-        .section
-          h1 Mailing list
-          form.inline(method='post', action='/mailing')
-            input(type='text', name='email', placeholder='Your email address', autofocus)
-            button(type='submit') Subscribe
-          p.
-            We'll email you when new papers come out. We won't spam you or share
-            your address with anyone.
-
-        .section
-          p <a class="github-button" href="https://github.com/brhs/multri" data-style="mega" data-count-href="/brhs/multri/stargazers" data-count-api="/repos/brhs/multri#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star brhs/multri on GitHub">Star</a>
-          script(async, defer, src='https://buttons.github.io/buttons.js')
+      ul.papers
+        for paper in papers
+          unless paper.hide
+            li: a(href='/paper/' + paper._id)= paper.title

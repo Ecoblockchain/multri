@@ -1,7 +1,7 @@
 extends base
 block content
   body
-    .nav: .nav-wrap.cf
+    .nav: .wrap.cf
       a.logo.l(href='/') Multiverse Triangle
       .links.r
         if user
@@ -13,5 +13,5 @@ block content
       .error= messages.error
     if messages.success
       .success= messages.success
-    .body
+    .body.wrap
       block body

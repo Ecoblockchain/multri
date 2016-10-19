@@ -11,48 +11,54 @@
     tdec none
     fw bold
     bco()
-  .nav-wrap
-    w 1105px
-    m 0 auto
-    .links
-      a
-        fs 14px
-        ml 0.75rem
+  .links
+    a
+      fs 14px
+      ml 0.75rem
+
+.wrap
+  w 1105px
+  m 0 auto
 
 .body
-  w 1105px
   m 2rem auto
 
+.footer
+  m 2rem 0
+  .wrap
+    pa 1rem 0
+    bbort 0.1
+
 .homepage
-  w 1000px
   m 4rem auto
-  .logo
-    fs 180%
-  .l, .r
-    bb()
-  .l
-    w 500px
-    co #555
-    h1, p, form
-      lcmb 0.8rem
-    h1
-      co #333
-      f bold 130%/1 font-sans
-      ls -0.01rem
-    .section
-      mt 2rem
-  .r
-    w 450px
-    pl 2rem
-    lh 1.4
-    ul.papers
-      list-style none
-      pa 0
-      li > p
-        mb 1rem
-        span
-          co #888
-          fs 90%
+  w 435px
+  .top
+    align center
+    .logo
+      fw bold
+      mb 0.35rem
+      fs 180%
+    .slogan
+      fs 120%
+      mb 1rem
+    form
+      mb 0.5rem
+      input
+        w 200px
+    .subtitle
+      fs 85%
+      bco 0.5
+  ul.papers
+    list-style none
+    mt 3rem
+    pa 0
+    li
+      pa 0.55rem 0
+      a
+        lh 1.4
+        bco-hover 0.7 1
+        &:hover
+          tdec none
 
 .logo
   bco()
@@ -188,6 +194,7 @@
 .index-nav
   co #888
   fs 13px
+  mt 0.25rem
   a
     co inherit
     tdec underline
