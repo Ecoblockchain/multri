@@ -25,8 +25,8 @@ app.get '/paper/:id', async (i, o) ->
     o.notfound!
 
 app.post '/mailing', async (i, o) ->
-  sub = ((_ Subscriber.find-one {email: i.body.email}) or
-         (_ Subscriber.create email: i.body.email))
+  sub = ((await Subscriber.find-one {email: i.body.email}) or
+         (await Subscriber.create email: i.body.email))
 
   msg = "Ok, #{sub.email} was added to the mailing list if it wasn't on it already."
   o.success msg, '/'
