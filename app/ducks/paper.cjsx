@@ -1,5 +1,6 @@
 R = require 'ramda'
 noteReducer = require './note'
+{ butlast, reduceChildren } = require './utils'
 
 SET_NOTES           = 'multri/paper/SET_NOTES'
 INIT_ADD_NOTE       = 'multri/paper/INIT_ADD_NOTE'
@@ -7,8 +8,6 @@ SET_SUBMITTING_NOTE = 'multri/paper/SET_SUBMITTING_NOTE'
 ADD_NOTE            = 'multri/paper/ADD_NOTE'
 CANCEL_ADD_NOTE     = 'multri/paper/CANCEL_ADD_NOTE'
 REMOVE_NOTE         = 'multri/paper/REMOVE_NOTE'
-
-butlast = R.dropLast 1
 
 reducer = (state = window.meta.paper, action) ->
   switch action.type
@@ -31,11 +30,7 @@ reducer = (state = window.meta.paper, action) ->
     when REMOVE_NOTE
       R.merge state, notes: R.filter ((n) -> n.id is action.noteID), state.notes
     else
-      ret = R.merge state, notes: (state.notes and
-                             R.map ((n) -> noteReducer n, action), state.notes)
-      console.log 'fucking christ'
-      console.log ret
-      ret
+      reduceChildren state, noteReducer, action, 'notes'
 
 reducer.setPaperNotes = (notes) ->
   type: SET_NOTES

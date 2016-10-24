@@ -3,9 +3,7 @@ moment = require 'moment'
 { connect } = require 'react-redux'
 
 { stifle } = require '../utils'
-
-{ editComment } = require '../ducks/comment'
-{ removeComment } = require '../ducks/note'
+{ editComment, removeComment } = require '../ducks/comment'
 
 dispatchProps = (dispatch) ->
   onEdit: (comment) ->
