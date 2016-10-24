@@ -12,19 +12,19 @@ and is compiled by Webpack into one big file.
 
 multri uses MongoDB, so set the `MONGODB_URI` environment variable, then run
 
-```
-git clone https://github.com/brhs/multri
-npm install
-npm start
-```
+    git clone https://github.com/brhs/multri
+    npm install
+    npm start
+
+To build the web app, run
+
+    npm run build
 
 To add a paper, install [pdf2htmlEX](https://github.com/coolwanglu/pdf2htmlEX)
 and [Ghostscript](http://www.ghostscript.com/) (on OS X, these are available
 via Homebrew), then go into [scripts/addpdf](scripts/addpdf) and run
 
-```
-./addpdf.sh <link to pdf> <title>
-```
+    ./addpdf.sh <link to pdf> <title>
 
-Again, this will add the paper to the database specified by the
-`MONGODB\_URI` environment variable.
+Again, this will add the paper to the database specified by the `MONGODB_URI`
+environment variable.
