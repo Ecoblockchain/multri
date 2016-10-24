@@ -22,13 +22,11 @@ install-convenience = (i, o, next) ->
   o.success = o.msg.bind o, 'success'
 
   o.notfound = ->
-    o
-      ..status 404
-      .render '404'
+    o.status(404).render('404')
 
   next!
 
-configure-app = ->
+module.exports = ->
   mongoose.connect process.env.MONGODB_URI
 
   it
@@ -49,4 +47,3 @@ configure-app = ->
     ..locals.ellipsize = ellipsize
     ..use install-convenience
 
-module.exports = {configure-app}

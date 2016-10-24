@@ -1,51 +1,43 @@
 React = require 'react'
-$ = require 'jquery'
 { connect } = require 'react-redux'
 
+Highlight = require './Highlight'
+NotePopup = require './NotePopup'
 NewComment = require './NewComment'
-Comment = require './Comment'
 Loading = require './Loading'
+Comment = require './Comment'
 
-{ moveNote } = require '../notes'
-{ addNoteComment } = require '../ducks/note'
+{ requestNote, closeNote, addNoteComment } = require '../ducks/note'
 
 dispatchProps = (dispatch) ->
+  onToggleNote: (note) ->
+    dispatch (if note.open then closeNote else requestNote) note
+
   onNewComment: (note, text) ->
-    dispatch addNoteComment note.id, text
+    dispatch addNoteComment note, text
 
 conn = connect null, dispatchProps
 
-module.exports = conn React.createClass
-  render: ->
-    classes = ['note', @props.note.type]
-    if @props.note.loading
-      classes.push 'loading'
+module.exports = conn ({onToggleNote, onNewComment, note}) ->
+  _onNewComment = (text) ->
+    onNewComment note, text
 
-    <div className={classes.join ' '} ref={(node) => moveNote $(node), @props.note._hilite}>
-      <div className='triangle' />
+  _showNote = ->
+    <NotePopup>
       {
-        if @props.note.loading
-          <Loading />
-        else if @props.note.comments.length > 0
-          comments = for comment in @props.note.comments
-            <Comment key={comment.id} comment={comment} />
-
-          _onNewComment = (text) =>
-            @props.onNewComment @props.note, text
-
-          commentBox = (
-            if window.meta.isLoggedIn
-              <div className='comment'>
-                {
-                  if @props.note.addingComment
-                    <Loading />
-                  else
-                    <NewComment onNewComment={_onNewComment} />
-                }
-              </div>
-          )
-          <div>{comments}{commentBox}</div>
+        if note.comments
+          <div>
+            {
+              for c in note.comments
+                <Comment key={c.id} comment={c} />
+            }
+            <NewComment note={note} onNewComment={_onNewComment} />
+          </div>
         else
-          <div>This annotation has been deleted.</div>
+          <Loading />
       }
-    </div>
+    </NotePopup>
+
+  <Highlight note={note} selected={note.open} onClick={=> onToggleNote note}>
+    {if note.open then _showNote() else null}
+  </Highlight>

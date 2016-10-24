@@ -38,8 +38,8 @@ findPageAndOffset = (y, margin) ->
       return false
   ret
 
-module.exports = (type, cb) ->
-  hilite = new Hilite type
+module.exports = (cb) ->
+  hilite = new Hilite
   hilite.toggle yes
 
   margin = hilite.margin()

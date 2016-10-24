@@ -26,4 +26,5 @@ request = (endpoint, method, data) ->
 module.exports =
   get:    (x, y) -> request x, 'get',    y
   post:   (x, y) -> request x, 'post',   y
+  put:    (x, y) -> request x, 'put',    y
   delete: (x, y) -> request x, 'delete', y

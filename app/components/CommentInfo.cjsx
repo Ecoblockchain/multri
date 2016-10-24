@@ -3,7 +3,9 @@ moment = require 'moment'
 { connect } = require 'react-redux'
 
 { stifle } = require '../utils'
-{ editComment, removeComment } = require '../ducks/comments'
+
+{ editComment } = require '../ducks/comment'
+{ removeComment } = require '../ducks/note'
 
 dispatchProps = (dispatch) ->
   onEdit: (comment) ->
@@ -33,12 +35,13 @@ module.exports = conn ({user, timestamp, newComment, comment, onEdit, onDelete})
           <div className='date'>
             <span className='part'>{moment(new Date(timestamp)).fromNow()}</span>
             {
-              if comment?
-                if window.meta.isLoggedIn
-                  <span>
-                    <span onClick={_onEdit} className='part link'>edit</span>
-                    <span onClick={_onDelete} className='part link'>delete</span>
-                  </span>
+              if comment? and window.meta.isLoggedIn
+                <span>
+                  <span onClick={_onEdit} className='part link'>edit</span>
+                  <span onClick={_onDelete} className='part link'>delete</span>
+                </span>
+              else
+                null
             }
           </div>
       }

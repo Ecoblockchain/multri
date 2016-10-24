@@ -27,7 +27,6 @@ Paper = new Schema do
 
 Note = new Schema do
   paper: ref 'Paper'
-  type: String
   location:
     page: Number
     offset: Number

@@ -2,7 +2,7 @@ React = require 'react'
 { connect } = require 'react-redux'
 { stifle } = require '../utils'
 
-{ saveComment } = require '../ducks/comments'
+{ saveComment } = require '../ducks/comment'
 
 dispatchProps = (dispatch) ->
   onSave: (comment, text) ->

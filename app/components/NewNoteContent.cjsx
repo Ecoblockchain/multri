@@ -2,30 +2,24 @@ React = require 'react'
 { connect } = require 'react-redux'
 { stifle } = require '../utils'
 
-{ resetNewNote } = require '../ducks/common'
+{ cancelAddNote } = require '../ducks/paper'
 
 dispatchProps = (dispatch) ->
   onCancel: ->
-    dispatch resetNewNote()
+    dispatch cancelAddNote()
 
 conn = connect null, dispatchProps
 
-module.exports = conn ({atype, onSubmit, onCancel}) ->
+module.exports = conn ({onSubmit, onCancel}) ->
   textarea = null
 
   _onSubmit = stifle ->
     onSubmit textarea.value
 
-  _onCancel = stifle ->
-    onCancel()
+  _onCancel = stifle onCancel
 
-  <form method='post' className={'new-content ' + atype} onSubmit={_onSubmit}>
+  <form method='post' className='new-content' onSubmit={_onSubmit}>
     <textarea ref={(node) => textarea = node} placeholder='Write your annotation...' />
-    <button
-      className={'btn btn-' + (if atype is 'question' then 'question' else 'primary')}
-      type='submit'
-    >
-      Post
-    </button>
+    <button className='btn btn-primary' type='submit'>Post</button>
     <button onClick={_onCancel} className='btn btn-muted'>Cancel</button>
   </form>

@@ -2,23 +2,24 @@ express = require 'express'
 global <<< require 'prelude-ls'
 
 utils = require './utils'
-config = require './config'
+configure-app = require './config'
 
 global <<< require './models'
 global <<< require './async'
 
-app = config.configure-app express!
+app = configure-app express!
 
 app.use '/', require './auth'
 app.use '/api', require './api'
 
-app.get '/', async (i, o) ->
-  davheed = no
-  if 'yes' in [i.query.davheed, i.cookies.davheed]
+davheed-middleware = (i, o, next) ->
+  o.locals.davheed = ('yes' in [i.query.davheed, i.cookies.davheed])
+  if o.locals.davheed
     o.cookie 'davheed', 'yes', { max-age: 900000 }
-    davheed = yes
+  next()
 
-  o.render 'index', {davheed, papers: await Paper.find {}, {content: 0}}
+app.get '/', davheed-middleware, async (i, o) ->
+  o.render 'index', {papers: await Paper.find {}, {content: 0}}
 
 app.get '/paper/:id', async (i, o) ->
   paper = await (Paper.find-by-id i.params.id .populate 'notes')
@@ -45,15 +46,11 @@ app.post '/profile', utils.check-login, async (i, o) ->
   o.redirect '/profile'
 
 app.use (i, o, next) ->
-  o
-    ..status 404
-    ..render '404'
+  o.notfound()
 
 app.use (err, i, o, next) ->
   console.error err.stack
-  o
-    ..status 500
-    ..render '500'
+  o.status(500).render('500')
 
 port = process.env.PORT or 1337
 app.listen port, ->

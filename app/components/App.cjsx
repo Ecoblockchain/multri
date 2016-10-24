@@ -1,15 +1,12 @@
 React = require 'react'
-{ connect } = require 'react-redux'
+Paper = require './Paper'
+Margin = require './Margin'
 
-Note = require './Note'
-NewNote = require './NewNote'
+{ connect } = require 'react-redux'
 Loading = require './Loading'
 
-stateProps = (state) ->
-  note: state.note
-
-module.exports = connect(stateProps) ({note}) ->
-  if note?
-    <Note note={note} />
-  else
-    <NewNote />
+module.exports = ->
+  <div className='pdf-viewer cf'>
+    <Paper />
+    <Margin />
+  </div>

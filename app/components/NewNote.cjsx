@@ -4,57 +4,44 @@ React = require 'react'
 $ = require 'jquery'
 { connect } = require 'react-redux'
 
-{ prepareNewNote, submitNewNote } = require '../ducks/notes'
 NewNoteContent = require './NewNoteContent'
+SelectY = require './SelectY'
+NotePopup = require './NotePopup'
+Loading = require './Loading'
 
-stateProps = (state) ->
-  newNote: state.notes.newNote
+{ submitNewNote } = require '../ducks/paper'
 
 dispatchProps = (dispatch) ->
-  onSetType: (type) ->
-    dispatch prepareNewNote type
+  onSubmit: (content, position) ->
+    dispatch submitNewNote content, position
 
-  onSetContent: (nn, content) ->
-    dispatch submitNewNote nn.type, content, nn.location
-
-conn = connect stateProps, dispatchProps
+conn = connect null, dispatchProps
 
 module.exports = conn React.createClass
-  submitContent: (content) ->
-    @props.onSetContent @props.newNote, content
+  getInitialState:
+    position: null
+    submitting: no
 
-  onNewNote: ->
-    @props.onSetType 'normal'
+  onSubmitContent: (content) ->
+    @setState submitting: yes
+    @props.onSubmit onSetContent content, @state.position
 
-  componentDidMount: ->
-    if @controls?
-      $(@controls).sticky({topSpacing: 20})
-    $(window).scroll()
+  onSelectPosition: (position) ->
+    @setState {position}
 
-  componentWillUnmount: ->
-    if @controls?
-      $(@controls).unstick()
+  _showForm: ->
+    <NotePopup>
+      <div className='new-note'>
+        {
+          if @state.submitting
+            <Loading />
+          else
+            <NewNoteContent onSubmit={@onSubmitContent} />
+        }
+      </div>
+    </NotePopup>
 
   render: ->
-    nn = @props.newNote
-    <div className='new-note' ref={(node) => @controls = node}>
-      {
-        if window.meta.isLoggedIn
-          if nn.type?
-            if nn.submitting
-              <div className='nn-message'>
-                Submitting...
-              </div>
-            else if nn.location?
-              <NewNoteContent atype={nn.type} onSubmit={@submitContent} />
-            else
-              <div className='nn-message'>
-                Please hover over the line you want to annotate and click with
-                your mouse. Press Escape to cancel.
-              </div>
-          else
-            <div className='controls'>
-              <span onClick={@onNewNote} className='btn btn-lg'>Add Annotation</span>
-            </div>
-      }
-    </div>
+    <SelectY onSelectPosition={@onSelectPosition}>
+      {@_showForm() if @state.position}
+    </SelectY>

@@ -6,19 +6,19 @@ require 'katex/dist/katex.min.css'
 
 # === rest of app ===
 
-React = require 'react'
-{ render } = require 'react-dom'
-{ Provider } = require 'react-redux'
+React           = require 'react'
+{ render }      = require 'react-dom'
+{ Provider }    = require 'react-redux'
+redux           = require 'redux'
+thunkMiddleware = require('redux-thunk').default
 
-App = require './components/App'
-{ addNewNote } = require './ducks/notes'
+App             = require './components/App'
+reducer         = require './ducks'
 
-store = require('./store')()
-
+store = redux.createStore reducer, redux.applyMiddleware thunkMiddleware
 render(
-  <Provider store={store}><App /></Provider>,
-  document.getElementById 'margin'
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById 'app'
 )
-
-for note in window.meta.notes
-  store.dispatch addNewNote note

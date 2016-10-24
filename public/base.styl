@@ -3,12 +3,11 @@
 color-theme = #38e
 color-muted = #888
 
-font-sans = -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'
-font-main = font-sans
-font-mono = Menlo, Consolas, monospace
+font-main = -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'
+font-mono = monaco, monospace
 
 body
-  f normal 14px/1.5 font-main
+  f normal 14px/1.4 font-main
   co #333
   m 0
 
@@ -19,7 +18,7 @@ input, textarea, button, .btn
   bor 0
   out 0
   bg none
-  f normal 14px font-sans
+  f normal 100% font-main
   pa 0.5rem
 
 btnbg(color)
@@ -33,7 +32,7 @@ button, .btn
   disp block
   tdec none
   cur pointer
-  fw bold
+  fw 600
   align center
   wco()
   pa 0.5rem 0.9rem
@@ -98,8 +97,7 @@ a, .link
   ui()
   wco()
   pa 1rem
-  ff font-sans
-  fs 15px
+  fs 110%
   align center
   &.error
     bg maroon
