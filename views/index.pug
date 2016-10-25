@@ -1,11 +1,5 @@
 extends layout
 block body
-  // asdf
-    if messages.error
-      .alert.error= messages.error
-    if messages.success
-      .alert.success= messages.success
-
   .homepage
     .top
       if davheed
@@ -14,7 +8,6 @@ block body
       form.inline.r(method='post', action='/mailing')
         input(type='text', name='email', placeholder='Email address to send new papers to', autofocus)
         button(type='submit') Subscribe
-
     ul.papers
       for paper in papers
         unless paper.hide

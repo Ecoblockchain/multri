@@ -10,8 +10,8 @@ block content
       else
         a(href='/login') Login
   if messages.error
-    .error= messages.error
+    .alert.error= messages.error
   if messages.success
-    .success= messages.success
+    .alert.success= messages.success
   .body.wrap
     block body
