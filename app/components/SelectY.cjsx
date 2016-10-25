@@ -1,4 +1,7 @@
 React = require 'react'
+R = require 'ramda'
+$ = require 'jquery'
+{ centeredTop } = require '../utils'
 
 Highlight = require './Highlight'
 
@@ -43,10 +46,11 @@ module.exports = React.createClass
     onMove = (e) =>
       y = e.pageY - $('#page-container').offset().top
       y = @_findNearestPos y, margin
-      @_topCentered $hilite, y
+      centeredTop $hilite, y
 
-    onSelect = (e) ->
-      cb @_findPageAndOffset @_topCentered(hilite), margin
+    onSelect = (e) =>
+      console.log 'wow it was clicked that is miraculous'
+      cb @_findPageAndOffset centeredTop($hilite), margin
       end()
 
     onKey = (e) ->
@@ -56,20 +60,23 @@ module.exports = React.createClass
 
     end = ->
       $('body').off 'keydown', onKey
+      $hilite.off 'click', onSelect
       $('#page-container')
         .off 'mousemove', null, onMove
-        .off 'mouseenter', null, onMove
         .off 'click', null, onSelect
 
     $('body').on 'keydown', onKey
+    $hilite.on 'click', onSelect
     $('#page-container')
       .on 'mousemove', onMove
-      .on 'mouseenter', onMove
       .on 'click', onSelect
+
+    onMove pageY: $('#page-container').offset().top
 
   onLoad: ($hilite) ->
     @_letUserSelectYPos $hilite, (pos) =>
-      @setState selected: yes
+      if pos?
+        @setState selected: yes
       @props.onSelectPosition pos
 
   render: ->

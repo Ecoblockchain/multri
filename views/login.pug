@@ -1,8 +1,13 @@
-extends account
+extends layout
+
 block body
-  form(method='post')
-    input(type='text', name='username', placeholder='Email', autofocus)
-    input(type='password', name='password', placeholder='Password')
-    button.btn(type='submit') Login
-  center (Sorry, registration is currently closed.)
-  // .alt-link: a(href='/register') Need an account?
+  .account
+    form(method='post')
+      input(type='text', name='username', placeholder='Email', autofocus)
+      input(type='password', name='password', placeholder='Password')
+      button.btn(type='submit') Login
+
+    .register
+      :markdown-it
+        Please [email me](mailto:bh@multiversetriangle.com) if you
+        want an account. You only need an account to write annotations—not read them.

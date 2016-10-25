@@ -1,6 +1,10 @@
+$ = require 'jquery'
+require 'jquery-sticky'
+
 React = require 'react'
 R = require 'ramda'
 { connect } = require 'react-redux'
+{ stifle } = require '../utils'
 
 Note = require './Note'
 NewNote = require './NewNote'
@@ -23,13 +27,23 @@ dispatchProps = (dispatch) ->
   onCancel: ->
     dispatch cancelAddNote()
 
-module.exports = connect(stateProps) React.createClass
+conn = connect(stateProps, dispatchProps)
+
+module.exports = conn React.createClass
+  _ref: (elem) ->
+    $(elem).sticky topSpacing: 28
+
   render: ->
-    <div className='margin r'>
-      {
-        if @props.newNote?
-          <button onClick={@_onCancel} className='btn btn-primary'>Cancel</button>
-        else
-          <button onClick={@_onStart} className='btn btn-primary'>Add annotation</button>
-      }
-    </div>
+    if window.meta.isLoggedIn
+      <div className='margin r'>
+        <div ref={@_ref}>
+          {
+            if @props.newNote?
+              <button onClick={@props.onCancel} className='btn btn-muted'>Cancel</button>
+            else
+              <button onClick={@props.onStart} className='btn'>Add annotation</button>
+          }
+        </div>
+      </div>
+    else
+      null

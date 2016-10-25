@@ -4,20 +4,22 @@ module.exports = {
   cache: true,
   entry: './app/index',
   output: {
-    filename: 'public/bundle.js'
+    filename: 'public/bundle.js',
+    pathinfo: true,
   },
   resolve: {
     extensions: ['', '.jsx', '.cjsx', '.coffee', '.js'],
-    modulesDirectories: ['js', 'node_modules']
+    modulesDirectories: ['js', 'node_modules'],
   },
   module: {
     loaders: [
       {test: /\.cjsx$/, loaders: ['coffee', 'cjsx']},
       {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'}
-    ]
+      {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000'},
+    ],
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval',
+  watch: true,
   plugins: [
     /*
     new webpack.optimize.UglifyJsPlugin(),

@@ -1,5 +1,3 @@
-require 'jquery-sticky'
-
 React = require 'react'
 $ = require 'jquery'
 { connect } = require 'react-redux'
@@ -9,25 +7,31 @@ SelectY = require './SelectY'
 NotePopup = require './NotePopup'
 Loading = require './Loading'
 
-{ submitNewNote } = require '../ducks/paper'
+{ submitNote, cancelAddNote } = require '../ducks/paper'
 
 dispatchProps = (dispatch) ->
   onSubmit: (content, position) ->
-    dispatch submitNewNote content, position
+    dispatch submitNote content, position
+
+  onCancel: ->
+    dispatch cancelAddNote()
 
 conn = connect null, dispatchProps
 
 module.exports = conn React.createClass
-  getInitialState:
+  getInitialState: ->
     position: null
     submitting: no
 
   onSubmitContent: (content) ->
     @setState submitting: yes
-    @props.onSubmit onSetContent content, @state.position
+    @props.onSubmit content, @state.position
 
   onSelectPosition: (position) ->
-    @setState {position}
+    if position
+      @setState {position}
+    else
+      @props.onCancel()
 
   _showForm: ->
     <NotePopup>

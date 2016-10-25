@@ -1,24 +1,21 @@
-extends base
-block content
-  - var email = 'contact@multiversetriangle.com'
-  body
+extends layout
+block body
+  // asdf
     if messages.error
       .alert.error= messages.error
     if messages.success
       .alert.success= messages.success
 
-    .homepage
-      .top
-        if davheed
-          .davheed: img(src='/static/img/davheed.png')
+  .homepage
+    .top
+      if davheed
+        .davheed: img(src='/static/img/davheed.png')
+      .slogan Multiverse Triangle provides #[b annotated deep learning research papers], like Rap Genius does for songs.
+      form.inline.r(method='post', action='/mailing')
+        input(type='text', name='email', placeholder='Email address to send new papers to', autofocus)
+        button(type='submit') Subscribe
 
-        a.logo(href='/') Multiverse Triangle
-        .slogan Annotated deep learning research papers
-        form.inline.r(method='post', action='/mailing')
-          input(type='text', name='email', placeholder='Email address to send new papers to', autofocus)
-          button(type='submit') Subscribe
-
-      ul.papers
-        for paper in papers
-          unless paper.hide
-            li: a(href='/paper/' + paper._id)= paper.title
+    ul.papers
+      for paper in papers
+        unless paper.hide
+          li: a(href='/paper/' + paper._id)= paper.title

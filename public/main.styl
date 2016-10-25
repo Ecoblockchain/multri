@@ -1,18 +1,22 @@
 @import base
 @import alias
 
-.nav
+.nav, .footer
   lh 1
-  pa 1rem 1rem 0.8rem
-  bborb 0.1
-  align center
+  pa 1rem 0
   a
-    tdec none
-    fw 600
-    bco()
-  .links
-    a
-      ml 0.75rem
+    disp inline-block
+    lcmr 1em
+
+.nav
+  bborb 0.05
+
+.footer
+  bbort 0.05
+  fs 90%
+  bco 0.3
+  a
+    bco 0.65
 
 .wrap
   w 1105px
@@ -23,22 +27,18 @@
 
 .homepage
   m 4rem auto
-  w 435px
+  w 500px
   .top
     align center
     .davheed
+      mb 2rem
       img
         w 200px
-    .logo
-      fw 600
-      lh 1
-      mb 0.75rem
-      fs 180%
     .slogan
-      fs 120%
-      fw 300
+      fs 130%
+      ls -0.01rem
       bco 0.5
-      lh 1
+      lh 1.6
       mb 1rem
       a
         tdec underline
@@ -121,8 +121,6 @@
       borl 0
       borr 0
       bg rgba(color-theme, 0.2)
-    textarea
-      h 200px
     .note
       z 4
       bb()
@@ -145,7 +143,7 @@
         lh 1.3
         fs 90%
         &:not(:last-child)
-          bborb 0.05
+          bborb 0.1
         h1, h2, h3, p, blockquote
           lcmb 0.7rem
         li > p:last-child
@@ -179,6 +177,10 @@
               a, .link
                 co inherit
                 tdec underline
+      form
+        brad 0
+        textarea
+          h 200px
   .margin
     w 150px
     ml 30px
@@ -198,3 +200,35 @@
   a
     co inherit
     tdec underline
+
+.prose
+  m 2rem 0
+  .prosetitle
+    mb 1rem
+    align center
+    h1
+      fw 300
+      ls 0.03rem
+      fs 175%
+  .proseinner
+    w 500px
+    m 0 auto
+    pa 1.5rem
+    brad 4px
+    bbg 0.05
+    lh 1.6
+
+.account
+  m 6rem 0
+  form
+    w 300px
+    m 2rem auto
+  .logo-wrap
+    align center
+    .logo
+      fs 135%
+  .register
+    lh 1.6
+    bco 0.5
+    w 450px
+    m 2rem auto

@@ -30,6 +30,9 @@ app.get '/paper/:id', async (i, o) ->
   else
     o.notfound!
 
+app.get '/about', (i, o) ->
+  o.render 'about'
+
 app.post '/mailing', async (i, o) ->
   sub = ((await Subscriber.find-one {email: i.body.email}) or
          (await Subscriber.create email: i.body.email))

@@ -12,13 +12,14 @@ gulp.task('css', () => {
 })
 
 gulp.task('js', () => {
-  return gulp.src('app/index.cjsx')
+  return gulp.src('app/index.ls')
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(rename('bundle.js'))
     .pipe(gulp.dest('public'))
 })
 
-gulp.task('default', ['css', 'js'], () => {
+gulp.task('watchcss', ['css'], () => {
   gulp.watch('public/**/*.styl', ['css'])
-  gulp.watch('app/**/*.cjsx', ['js'])
 })
+
+gulp.task('default', ['watchcss', 'js'])

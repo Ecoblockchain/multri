@@ -36,7 +36,7 @@ module.exports = connect(stateProps, dispatchProps) React.createClass
             {
               for note in (p.notes or [])
                 if note.isNew
-                  <NewNote key={note.id} newNote={note} />
+                  <NewNote key='newnote' />
                 else
                   <Note key={note.id} note={note} />
             }

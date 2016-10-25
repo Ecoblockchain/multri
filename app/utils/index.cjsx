@@ -2,8 +2,16 @@ api = require './api'
 
 stifle = (cb) ->
   (e) ->
-    e.preventDefault()
-    cb e
-    false
+    if cb?
+      e.preventDefault()
+      cb.call @, e
+      false
 
-module.exports = {stifle, api}
+centeredTop = ($elem, y) ->
+  margin = $elem.outerHeight() / 2
+  if y?
+    $elem.css 'top', "#{y - margin}px"
+  else
+    return $elem.position().top + margin
+
+module.exports = { api, stifle, centeredTop }

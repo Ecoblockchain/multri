@@ -1,8 +1,9 @@
 R = require 'ramda'
+U = require './utils'
+
 { api } = require '../utils'
 
 commentReducer = require './comment'
-{ butlast, reduceChildren, truthy } = require './utils'
 
 SET_ADDING_COMMENT = 'multri/note/SET_ADDING_COMMENT'
 ADD_COMMENT        = 'multri/note/ADD_COMMENT'
@@ -11,7 +12,7 @@ SET_COMMENTS       = 'multri/note/SET_COMMENTS'
 CLOSE              = 'multri/note/CLOSE'
 
 reduceComments = (state, action) ->
-  state = reduceChildren state, commentReducer, action, 'comments'
+  state = U.reduceChildren state, commentReducer, action, 'comments'
   if state.comments? and R.isEmpty state.comments
     null
   else
@@ -24,18 +25,18 @@ reducer = (state = null, action) ->
         R.merge state, addingComment: yes
       when ADD_COMMENT
         R.merge state,
-          comments: [state.comments..., action.comment]
+          comments: R.append action.comment, state.comments
           addingComment: no
       when SET_COMMENTS
         R.merge state, comments: action.comments
       when OPEN
         R.merge state, open: yes
       when CLOSE
-        R.omit ['open', 'content'], state
+        R.dissoc 'open', state
       else
         reduceComments state, action
   else if action.type is OPEN
-    R.omit ['open', 'content'], state
+    R.dissoc 'open', state
   else
     reduceComments state, action
 

@@ -1,17 +1,17 @@
 extends base
+
 block content
-  body
-    .nav: .wrap.cf
-      a.logo.l(href='/') Multiverse Triangle
-      .links.r
-        if user
-          a(href='/profile') Profile
-          a(href='/logout') Logout
-        else
-          a(href='/login') Login
-    if messages.error
-      .error= messages.error
-    if messages.success
-      .success= messages.success
-    .body.wrap
-      block body
+  .nav.wrap.cf
+    a.logo.l(href='/') Multiverse Triangle
+    .links.r
+      if user
+        a(href='/profile') Profile
+        a(href='/logout') Logout
+      else
+        a(href='/login') Login
+  if messages.error
+    .error= messages.error
+  if messages.success
+    .success= messages.success
+  .body.wrap
+    block body
